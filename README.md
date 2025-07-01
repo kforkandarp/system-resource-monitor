@@ -1,29 +1,29 @@
 # 🖥️ System Resource Monitor (Linux Automation)
 
-A lightweight and automated Bash script to monitor your Linux system's **CPU, RAM, and Disk usage**. Logs system metrics and provides alerts when usage exceeds specified thresholds.
+A lightweight and automated Bash script to monitor your Linux system's **CPU, RAM, and Disk usage**. It logs system metrics and provides alerts when usage exceeds specified thresholds — ideal for system health tracking without manual effort.
 
 ---
 
 ## 🚀 Features
 
 - ✅ Real-time monitoring of:
-  - CPU usage
+  - CPU usage (via `mpstat`)
   - Memory (RAM) usage
   - Disk space usage
-- ⚠️ Alerts when thresholds are exceeded
-- 📄 Logs saved to a local file (`system-monitor.log`)
-- 🕒 Automated execution every 5 minutes using `cron`
-- 💡 Beginner-friendly and easy to set up
+- ⚠️ Threshold-based alerting
+- 📄 Logs stored locally at `/home/<your-username>/system-monitor.log`
+- 🕒 Scheduled execution every 5 minutes using `cron`
+- 🔧 Simple and beginner-friendly setup
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```
 
 system-resource-monitor/
-├── monitor.sh       # Main Bash script
-└── README.md        # Project overview and usage guide
+├── monitor.sh     # Main Bash script
+└── README.md      # This file
 
 ````
 
@@ -38,7 +38,7 @@ git clone https://github.com/kforkandarp/system-resource-monitor.git
 cd system-resource-monitor
 ````
 
-### 2. Make Script Executable
+### 2. Make the Script Executable
 
 ```bash
 chmod +x monitor.sh
@@ -50,49 +50,54 @@ chmod +x monitor.sh
 ./monitor.sh
 ```
 
-### 4. View the Log File
+### 4. View the Log Output
 
 ```bash
-cat ~/system-monitor.log
+cat /home/kandarp/system-monitor.log
 ```
-
 ---
 
-## 🛠️ Automate with Cron
+## 🕒 Automate with Cron
 
-To run the script every 5 minutes:
+To run the script automatically every 5 minutes:
 
-1. Open the crontab editor:
+### Open the crontab editor:
 
 ```bash
 crontab -e
 ```
 
-2. Add the following line (update the path if needed):
+### Add the following line:
 
 ```bash
 */5 * * * * /home/kandarp/system-resource-monitor/monitor.sh
 ```
 
-This schedules the script to run every 5 minutes and automatically log resource usage.
+This schedules the script to run every 5 minutes and log system resource usage automatically.
 
 ---
 
 ## 📌 Sample Log Output
 
-```
-![image](https://github.com/user-attachments/assets/780795ba-693f-4a64-9837-dbe5319ee838)
+![image](https://github.com/user-attachments/assets/756d099e-3728-4ecc-9f91-f59149865ebb)
 
+
+```text
+[2025-07-01 11:05:32] CPU: 0% | RAM: 6% | Disk: 1%
+[2025-07-01 12:00:35] CPU: 100% | RAM: 6% | Disk: 1%
+[2025-07-01 12:00:35] ⚠️ CPU usage is high: 100%
+[2025-07-01 12:05:01] CPU: 0% | RAM: 6% | Disk: 1%
 ```
 
 ---
 
-## 🤝 Contributing
+## 📚 Tools Used
 
-This is a simple open-source utility — feel free to fork and improve it!
+* `bash` – shell scripting
+* `mpstat` – CPU usage monitoring (install via `sudo apt install sysstat`)
+* `free` – memory usage
+* `df` – disk usage
+* `cron` – scheduling automation
 
 ---
 
-## 🙌 Acknowledgements
-
-Built as part of a personal learning project on Linux scripting and automation.
